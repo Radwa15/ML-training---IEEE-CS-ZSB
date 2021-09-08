@@ -27,11 +27,20 @@ for k in range(0,n-1):
             a[i,j] = a[k,j] - (a[i,j] * fac)
         b[i] = b[k] - (b[i] * fac)
      
-x[n-1] = b[n-1]/ a[n-1,n-1]
-for i in range(n-2,-1,-1):
-    sum_x = 0.0
-    for j in range(i+1,n):
-        sum_x += a[i,j] * a[i,j]
-    x[i] = (b[i] - sum_x) / a[i,i]
+if a[n-1][n-1] != 0:
+    x[n-1] = b[n-1]/ a[n-1,n-1]
+    for i in range(n-2,-1,-1):
+        
+        sum_x = 0.0
+        for j in range(i+1,n):
+            sum_x += a[i,j] * x[j]
+        if a[i][i] !=0:
+            x[i] = (b[i] - sum_x) / a[i,i]
+        else:
+            print("No Solution")
+            break
+    print(x)
+else:
+    print("No Solution")
     
 print(x)
